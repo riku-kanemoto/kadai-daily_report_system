@@ -12,7 +12,7 @@
 <input type="text" name="code" value="${employee.code}"/>
 <br/><br/>
 <label for="name">氏名</label><br/>
-<input type="text" name="name" value="${employee.code}"/>
+<input type="text" name="name" value="${employee.name}"/>
 <br/><br/>
 <label for="password">パスワード</label>
 <input type="password" name="password"/>
