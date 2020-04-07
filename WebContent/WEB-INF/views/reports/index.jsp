@@ -27,7 +27,7 @@
                         </td>
                         <td class="report_title">${report.title}</td>
                         <td class="report_action">
-                            <a href="<c:url value='/reports/show?=id${report.id}'/>">
+                            <a href="<c:url value='/reports/show?id=${report.id}'/>">
                                 詳細を見る
                             </a>
                         </td>
