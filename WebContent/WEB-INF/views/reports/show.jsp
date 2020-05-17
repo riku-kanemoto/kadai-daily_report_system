@@ -6,7 +6,23 @@
         <c:choose>
             <c:when test="${report !=null}">
                 <h2>日報 詳細ページ</h2>
+                <div id="follow_system">
+                    <c:choose>
+                    <c:when test="${f==0 or f==null}">
+                        <form method="POST" action="${pageContext.request.contextPath}/follow/add?id=${report.employee.id}&r.id=${report.id}">
+                           <input type="hidden" name="_token" value="${_token}"/>
+                           <input type="submit" value="フォローする"/>
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        <form method="POST" action="${pageContext.request.contextPath}/follow/destroy?id=${report.employee.id}&r.id=${report.id}">
+                           <input type="hidden" name="_token" value="${_token}"/>
+                           <input type="submit" value="フォロ中"/>
+                        </form>
 
+                    </c:otherwise>
+                </c:choose>
+                </div>
                 <table>
                     <tbody>
                        <tr>
@@ -48,7 +64,18 @@
             <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
+        <c:choose>
+            <c:when test="${p==0 }">
+                <p><a href="<c:url value='/reports/index'/>">一覧に戻る</a></p>
+            </c:when>
+            <c:when test="${p==1 }">
+                <p><a href="${pageContext.request.contextPath}/follow/index?id=${sessionScope.login_employee.id}">フォロー日報一覧</a></p>
+            </c:when>
+            <c:otherwise>
+                <p><a href="<c:url value='/reports/index'/>">一覧に戻る</a></p>
+            </c:otherwise>
 
-        <p><a href="<c:url value='/reports/index'/>">一覧に戻る</a></p>
+        </c:choose>
+
     </c:param>
 </c:import>
