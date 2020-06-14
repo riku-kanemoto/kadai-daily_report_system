@@ -19,7 +19,6 @@
                         </c:if>
                         <a href="<c:url value='/reports/index'/>">日報管理</a>&nbsp;
                         <a href="${pageContext.request.contextPath}/follow/index?id=${sessionScope.login_employee.id}">フォロー日報一覧</a>
-                        <a href="<c:url value='/follow/employees'/>">フォロー</a>
                     </c:if>
                 </div>
                 <c:if test="${sessionScope.login_employee !=null}">

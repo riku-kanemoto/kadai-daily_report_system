@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name="getAllFollowEmployees",
-            query="SELECT f.follow_id FROM Follow AS f WHERE f.user_id=:user_id ORDER BY f.id DESC"
+            query="SELECT f.follow_id FROM Follow AS f WHERE f.user_id=:user_id AND f.follow_flag=1 ORDER BY f.id DESC"
             ),
     @NamedQuery(
             name="getDestroyFollow",

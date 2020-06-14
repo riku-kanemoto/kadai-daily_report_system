@@ -40,6 +40,7 @@ public class FollowDestroyServlet extends HttpServlet {
             Employee login_employee=(Employee)request.getSession().getAttribute("login_employee");
             Employee follow=em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
             Integer r= Integer.parseInt(request.getParameter("r.id"));
+            Integer p=Integer.parseInt(request.getParameter("p"));
             Follow f=(Follow)em.createNamedQuery("getDestroyFollow",Follow.class)
                     .setParameter("user_id", login_employee)
                     .setParameter("follow_id", follow)
@@ -51,7 +52,7 @@ public class FollowDestroyServlet extends HttpServlet {
             em.getTransaction().begin();
             em.getTransaction().commit();
             em.close();
-            response.sendRedirect(request.getContextPath()+"/reports/show?id="+follow.getId()+"&r.id="+r);
+            response.sendRedirect(request.getContextPath()+"/reports/show?id="+follow.getId()+"&r.id="+r+"&p="+p);
 
         }
     }

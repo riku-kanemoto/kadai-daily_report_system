@@ -10,12 +10,14 @@
                     <c:choose>
                     <c:when test="${f==0 or f==null}">
                         <form method="POST" action="${pageContext.request.contextPath}/follow/add?id=${report.employee.id}&r.id=${report.id}">
+                           <input type="hidden" name="p" value="${p}">
                            <input type="hidden" name="_token" value="${_token}"/>
                            <input type="submit" value="フォローする"/>
                         </form>
                     </c:when>
                     <c:otherwise>
                         <form method="POST" action="${pageContext.request.contextPath}/follow/destroy?id=${report.employee.id}&r.id=${report.id}">
+                           <input type="hidden" name="p" value="${p}">
                            <input type="hidden" name="_token" value="${_token}"/>
                            <input type="submit" value="フォロ中"/>
                         </form>

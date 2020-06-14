@@ -35,7 +35,7 @@ public class FollowAddServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        String _token=(String)request.getSession().getId();
+        String _token=(String)request.getParameter("_token");
         if(_token !=null && _token.equals(request.getSession().getId())){
             EntityManager em=DBUtil.createEntityMagaer();
             Integer r= Integer.parseInt(request.getParameter("r.id"));
@@ -45,6 +45,8 @@ public class FollowAddServlet extends HttpServlet {
                     .setParameter("user_id", login_employee)
                     .setParameter("follow_id", follow)
                     .getResultList();
+           Integer p=Integer.parseInt(request.getParameter("p"));
+
             if(fl.size()>0){
                 Follow f=(Follow)em.createNamedQuery("getDestroyFollow",Follow.class)
                         .setParameter("user_id", login_employee)
@@ -55,7 +57,7 @@ public class FollowAddServlet extends HttpServlet {
                 em.getTransaction().begin();
                 em.getTransaction().commit();
                 em.close();
-                response.sendRedirect(request.getContextPath()+"/reports/show?id="+follow.getId()+"&r.id="+r);
+
 
             }else{
                 Follow f=new Follow();
@@ -69,8 +71,8 @@ public class FollowAddServlet extends HttpServlet {
                 em.getTransaction().commit();
                 em.close();
 
-                response.sendRedirect(request.getContextPath()+"/reports/show?id="+follow.getId()+"&r.id="+r);
             }
+            response.sendRedirect(request.getContextPath()+"/reports/show?id="+follow.getId()+"&r.id="+r+"&p="+p);
 
         }
     }
